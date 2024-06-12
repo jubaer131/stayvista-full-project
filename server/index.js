@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
 const jwt = require('jsonwebtoken')
 
-const port = process.env.PORT || 8000
+const port = process.env.PORT ||  5005
 
 // middleware
 const corsOptions = {
@@ -36,7 +36,10 @@ const verifyToken = async (req, res, next) => {
   })
 }
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@main.mq0mae1.mongodb.net/?retryWrites=true&w=majority&appName=Main`
+// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@main.mq0mae1.mongodb.net/?retryWrites=true&w=majority&appName=Main`
+
+const uri = "mongodb+srv://stayvista2:31zhQ0RSICkjWCld@cluster0.8dssgfd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+console.log(uri)
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -47,8 +50,8 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    const roomsCollection = client.db('stayvista').collection('rooms')
-    const usersCollection = client.db('stayvista').collection('users')
+    const roomsCollection = client.db('stayvista2').collection('rooms')
+    const usersCollection = client.db('stayvista2').collection('users')
     // verify admin middleware
     const verifyAdmin = async (req, res, next) => {
       console.log('hello')
